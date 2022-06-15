@@ -1,0 +1,30 @@
+version: '3.9'
+services:
+  nginx:
+    image: nginx:stable
+    container_name: nginx-mysql-fulltext-search
+    volumes:
+      - ./nginx/conf.d/127.0.0.1.conf:/etc/nginx/conf.d/127.0.0.1.conf
+    ports:
+      - "80:80"
+    depends_on:
+      - php
+
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: custom:8.1-fpm-alpine
+    container_name: php-mysql-fulltext-search
+    volumes:
+      - ./webroot:/usr/share/nginx/webroot
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0.29
+    container_name: db-mysql-fulltext-search
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ./mysql_data:/var/lib/mysql
