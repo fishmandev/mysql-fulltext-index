@@ -1,0 +1,1 @@
+SELECT id FROM search WHERE MATCH(f1,f2, f3, f4, f5) AGAINST ('keyword');
