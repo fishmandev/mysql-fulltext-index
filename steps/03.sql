@@ -3,7 +3,7 @@ DELIMITER //
 CREATE PROCEDURE generate()
 BEGIN
 DECLARE i INT DEFAULT 0;
-WHILE (i <= 100) DO
+WHILE (i <= 1000000) DO
     INSERT INTO `search`
         SET f1=CONCAT(lipsum(2000, 2000, 0)),
             f2=CONCAT(lipsum(2000, 2000, 0)),
