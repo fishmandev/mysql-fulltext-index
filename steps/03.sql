@@ -14,3 +14,5 @@ WHILE (i <= 1000000) DO
 END WHILE;
 END;
 //
+
+CALL generate();
